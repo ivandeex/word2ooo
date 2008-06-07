@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="word2ooo" default="all" basedir=".">
+
+    <target name="all" depends="prepare,compile,jar">
+    </target>
+
+    <target name="prepare" depends="">
+        <mkdir dir="bin/classes" />
+        <copy todir="bin/classes">
+            <fileset dir="src" includes="**/*.dtd" />
+        </copy>
+    </target>
+
+    <target name="compile" depends="prepare">
+        <javac srcdir="src" destdir="bin/classes" includes="**/*.java" debug="on" optimize="on" deprecation="off">
+            <!--classpath refid="classpath" /-->
+        </javac>
+    </target>
+
+    <target name="jar" depends="prepare">
+        <jar jarfile="bin/word2ooo.jar" manifest="src/manifest.txt" includes="**" basedir="bin/classes" />
+    </target>
+
+    <target name="clean">
+        <delete dir="bin" />
+        <delete>
+            <fileset dir="src" includes="**/*.class,**/*.java~" />
+        </delete>
+    </target>
+
+</project>
